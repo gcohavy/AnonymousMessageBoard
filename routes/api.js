@@ -15,7 +15,7 @@ module.exports = function (app) {
   app.route('/api/threads/:board')
     .post((req, res) => {
       var board = req.query.board;
-      console.log(req);
+      console.log(req.body);
     })
     
   app.route('/api/replies/:board');

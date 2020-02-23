@@ -20,6 +20,13 @@ suite('Functional Tests', function() {
     suite('POST', function() {
       chai.request(server)
       .post('/api/threads/test')
+      .send({
+        text: 'Test text'
+      })
+      .end((res, done) => {
+        console.log(res);
+        done();
+      })
     });
     
     suite('GET', function() {
