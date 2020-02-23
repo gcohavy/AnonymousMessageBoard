@@ -23,7 +23,7 @@ suite('Functional Tests', function() {
       .send({
         text: 'Test text'
       })
-      .end((res, done) => {
+      .end((err, res, done) => {
         console.log(res);
         done();
       })
