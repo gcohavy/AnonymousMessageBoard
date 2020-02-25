@@ -23,6 +23,7 @@ module.exports = function (app) {
         delete_password: req.body.delete_password || null,
         replies: []
       } 
+      return res.json(save);
       
       console.log(save);
     })
