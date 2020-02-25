@@ -56,7 +56,8 @@ suite('Functional Tests', function() {
         .post('/api/replies/test')
         .send({
           text: 'Test text',
-          delete_password: 'password'
+          delete_password: 'password',
+          thread_id: 'something'
         })
         .end((err, res) => {          
           assert.equal(res.status, 200);
