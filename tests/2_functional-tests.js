@@ -21,7 +21,8 @@ suite('Functional Tests', function() {
       chai.request(server)
       .post('/api/threads/test')
       .send({
-        text: 'Test text'
+        text: 'Test text',
+        delete_password: 'password'
       })
       .end((err, res, done) => {
         console.log(res);
