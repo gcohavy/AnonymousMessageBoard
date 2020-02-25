@@ -25,8 +25,8 @@ suite('Functional Tests', function() {
           text: 'Test text',
           delete_password: 'password'
         })
-        .end((err, res) => {
-          
+        .end((err, res) => {          
+          assert.equal(res.status, 200);
           done();
         })
       })

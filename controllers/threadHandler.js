@@ -4,6 +4,7 @@ var db = process.env.DB
 function ThreadHandler() {
   this.addThread = function (req, res) {
       var board = req.query.board;
+      console.log(board);
       var save = {
         created_on: new Date(),
         bumped_on: new Date(),
@@ -12,7 +13,16 @@ function ThreadHandler() {
         delete_password: req.body.delete_password,
         replies: []
       }
-      mongoClient.connect(db, )
-    
+      mongoClient.connect(db, {useUnifiedTopology: true}, (err, client)=> {
+        if(err) console.log(err);
+        var db = client.db('test');
+        var collection = db.collection(board);
+        collection.insertOne(save, (err, ret) => {
+          if(err) console.log(err);
+          res.redirect('/b/'+board);
+        })
+      })
   }
 }
+
+module.exports = ThreadHandler;
