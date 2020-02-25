@@ -26,7 +26,7 @@ suite('Functional Tests', function() {
           delete_password: 'password'
         })
         .end((err, res) => {
-          console.log(res.body);
+          
           done();
         })
       })
