@@ -3,8 +3,7 @@ var db = process.env.DB
 
 function ThreadHandler() {
   this.addThread = function (req, res) {
-      var board = req.query.board;
-      console.log(board);
+      var board = req.params.board;
       var save = {
         created_on: new Date(),
         bumped_on: new Date(),

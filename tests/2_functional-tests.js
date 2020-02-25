@@ -51,7 +51,18 @@ suite('Functional Tests', function() {
   suite('API ROUTING FOR /api/replies/:board', function() {
     
     suite('POST', function() {
-      
+      test('Post a new reply', function(done) {
+        chai.request(server)
+        .post('/api/replies/test')
+        .send({
+          text: 'Test text',
+          delete_password: 'password'
+        })
+        .end((err, res) => {          
+          assert.equal(res.status, 200);
+          done();
+        })
+      })      
     });
     
     suite('GET', function() {
