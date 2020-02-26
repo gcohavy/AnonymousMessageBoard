@@ -4,6 +4,11 @@ var ObjectId = require('mongodb').ObjectID;
 var db_connection_string = process.env.DB;
 
 function ReplyHandler () {
+  
+  this.getReplies = function (req, res) {
+    var board = req.params.board;
+  };
+  
   this.addReply = function(req, res) {
     var board = req.params.board;
     var id = new ObjectId(req.body.thread_id);
@@ -23,8 +28,15 @@ function ReplyHandler () {
         res.redirect('/b/'+ board + '/' + id);
       })
     })
-    
-  }
-}
+  };
+  
+  this.updateReply = function (req, res) {
+    var board = req.params.board;
+  };
+  
+  this.deleteReply = function (req, res) {
+    var board = req.params.board;
+  };
+};
 
 module.exports = ReplyHandler;
