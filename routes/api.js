@@ -19,9 +19,15 @@ module.exports = function (app) {
   var replyHandler = new ReplyHandler();
   
   app.route('/api/threads/:board')
-    .post(threadHandler.addThread);
+    .get(threadHandler.getThreads)
+    .post(threadHandler.addThread)
+    .put(threadHandler.updateThread)
+    .delete(threadHandler.deleteThread);
     
   app.route('/api/replies/:board')
-    .post(replyHandler.addReply);
+    .get(replyHandler.getReplies)
+    .post(replyHandler.addReply)
+    .put(replyHandler.updateReply)
+    .delete(replyHandler.deleteReply);
 
 };

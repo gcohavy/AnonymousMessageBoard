@@ -7,6 +7,12 @@ function ReplyHandler () {
   
   this.getReplies = function (req, res) {
     var board = req.params.board;
+    mongoClient.connect(db_connection_string, {useUnifiedTopology: true}, (err, client)=>{
+      if(err) console.log(err);
+      var db = client.db('test');
+      var collection = db.collection(board);
+      
+    });
   };
   
   this.addReply = function(req, res) {
@@ -32,10 +38,22 @@ function ReplyHandler () {
   
   this.updateReply = function (req, res) {
     var board = req.params.board;
+    mongoClient.connect(db_connection_string, {useUnifiedTopology: true}, (err, client)=>{
+      if(err) console.log(err);
+      var db = client.db('test');
+      var collection = db.collection(board);
+      
+    });
   };
   
   this.deleteReply = function (req, res) {
     var board = req.params.board;
+    mongoClient.connect(db_connection_string, {useUnifiedTopology: true}, (err, client)=>{
+      if(err) console.log(err);
+      var db = client.db('test');
+      var collection = db.collection(board);
+      
+    });
   };
 };
 
