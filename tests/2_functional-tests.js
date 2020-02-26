@@ -15,6 +15,8 @@ chai.use(chaiHttp);
 
 suite('Functional Tests', function() {
 
+  var id1;
+  
   suite('API ROUTING FOR /api/threads/:board', function() {
     
     suite('POST', function() {

@@ -1,13 +1,14 @@
 
 var mongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
 var db_connection_string = process.env.DB;
 
 function ReplyHandler () {
   this.addReply = function(req, res) {
     var board = req.params.board;
     var id = req.body.thread_id;
-    var bumped_on = new Date();
     var save = {
+      _id: new ObjectId(),
       text: req.body.text,
       delete_password: req.body.delete_password,
       created_on: new Date(),
@@ -17,9 +18,8 @@ function ReplyHandler () {
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      collection.findOneAndUpdate({_id: id},{$addToSet: {replies: save}}, {returnNewDocument: true},(err, ret) =>{
+      collection.findOneAndUpdate({_id: id},{$addToSet: {replies: save}, $set: {bumped_on: new Date()}}, {returnNewDocument: true},(err, ret) =>{
         if(err) console.log(err);
-        console.log(ret);
         res.redirect('/b/'+ board + '/' + id);
       })
     })
