@@ -11,7 +11,7 @@ function ReplyHandler () {
   
   this.addReply = function(req, res) {
     var board = req.params.board;
-    var id = new ObjectId(req.body.thread_id);
+    var id = req.body.thread_id;
     var save = {
       _id: new ObjectId(),
       text: req.body.text,
