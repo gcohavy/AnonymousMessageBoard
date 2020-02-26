@@ -36,7 +36,14 @@ suite('Functional Tests', function() {
     });
     
     suite('GET', function() {
-      
+      test('Get last 10 bumped threads', function(done){
+        chai.request(server)
+        .get('/api/threads/test')
+        .end((err, res) =>{
+          assert.equal(res.status, 200);
+          done();
+        })
+      })
     });
     
     suite('DELETE', function() {

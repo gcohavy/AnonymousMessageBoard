@@ -9,7 +9,8 @@ function ThreadHandler() {
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      collection.find().sort({bumped_on: -1})
+      console.log(collection.find().sort({bumped_on: -1}).limit(10)).toArray();
+      
     });
   };
   
