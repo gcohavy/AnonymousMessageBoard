@@ -17,7 +17,7 @@ function ReplyHandler () {
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      collection.findOneAndUpdate({_id: id},{bumped_on: bumped_on, $addToSet: {replies: save}}, {returnNewDocument: true},(err, ret) =>{
+      collection.findOneAndUpdate({_id: id},{$addToSet: {replies: save}}, {returnNewDocument: true},(err, ret) =>{
         if(err) console.log(err);
         console.log(ret);
         res.redirect('/b/'+ board + '/' + id);
