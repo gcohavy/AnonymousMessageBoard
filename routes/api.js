@@ -37,8 +37,11 @@ module.exports = function (app) {
       text: 'test text',
       reported: false,
       delete_password: 'req.body.delete_password',
-      replies: ['1', '2', '3', '4', '5']
-    }, (err, ret) => {
+      replies: ['1', '2', '3', '4', '5', {
+        _id: 'testid', 
+        delete_password: 'password', 
+        text: 'This reply is for deleting :)'
+      }]}, (err, ret) => {
       if(err) console.log('err inserting test thread: ' + err);
       console.log('Test thread inserted');
     })

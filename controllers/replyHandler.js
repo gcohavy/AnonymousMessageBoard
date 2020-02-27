@@ -63,7 +63,9 @@ function ReplyHandler () {
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      
+      collection.findOne({_id: thread_id}, (err, ret) => {
+        
+      });
     });
   };
 };

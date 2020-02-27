@@ -126,8 +126,14 @@ suite('Functional Tests', function() {
       test('Delete reply', function(done){
         chai.request(server)
         .delete('/api/replies/testcollection')
+        .send({
+          thread_id: 'testid',
+          reply_id: 'testid',
+          delete_password: 'password'
+        })
         .end((err, res) =>{
           assert.equal(res.status, 200);
+          assert.equal(res.text, 'Delete Successful');
           done();
         })
       })
