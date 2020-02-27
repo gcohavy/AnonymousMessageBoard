@@ -51,9 +51,13 @@ suite('Functional Tests', function() {
       test('Delete thread', function(done){
         chai.request(server)
         .delete('/api/threads/testcollection')
+        .send({
+          thread_id: 'testid',
+          delete_password: 'incorrect password so the test thread can remain'
+        })
         .end((err, res) =>{
           assert.equal(res.status, 200);
-          assert.equal(res.text, 'Successfully deleted')
+          assert.equal(res.text, 'Incorrect password');
           done();
         })
       })

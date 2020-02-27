@@ -42,11 +42,24 @@ function ThreadHandler() {
   
   this.deleteThread = function (req, res) {
     var board = req.params.board;
+    var thread_id = req.body.thread_id;
+    var delete_password = req.body.delete_password;
+    var valid = false;
     mongoClient.connect(db_connection_string, {useUnifiedTopology: true}, (err, client)=>{
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      collection.deleteMany()
+      collection.findOne({_id: thread_id}, (err, ret) => {
+        if(err) console.log(err);
+        if(delete_password == ret.delete_password) {
+          collection.deleteOne({_id: thread_id}, (err, resume)=>{
+            if(err) console.log(err);
+            res.send('Delete successful');
+          })    
+        }
+        else res.send('Incorrect password');
+      })
+
     });
   };
   
