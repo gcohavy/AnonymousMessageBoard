@@ -67,9 +67,8 @@ function ReplyHandler () {
       collection.findOne({_id: thread_id}, (err, ret) => {
         if(err) console.log(err);
         ret.replies.forEach(reply => {
-          if( reply.delete_password == delete_password ) {
+          if( reply._id == reply_id && reply.delete_password === delete_password ) {
             reply.text = '[deleted]';
-            console.log(reply);
             return res.send('Delete successful');
           }
         })

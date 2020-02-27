@@ -68,6 +68,7 @@ suite('Functional Tests', function() {
       test('Update thread', function(done){
         chai.request(server)
         .put('/api/threads/testcollection')
+        .send({thread_id: 'testid'})
         .end((err, res) =>{
           assert.equal(res.status, 200);
           done();

@@ -65,11 +65,15 @@ function ThreadHandler() {
   
   this.updateThread = function (req, res) {
     var board = req.params.board;
+    var thread_id = req.body.thread_id;
     mongoClient.connect(db_connection_string, {useUnifiedTopology: true}, (err, client)=>{
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      
+      collection.findOneAndUpdate({_id: thread_id}, {$set: {reported: true}}, {returnNewDocument: true}, (err, ret) => {
+        if(err) console.log(err);
+        console.log(ret);
+      })
     });
   }
 }
