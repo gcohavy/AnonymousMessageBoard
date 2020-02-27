@@ -108,7 +108,9 @@ suite('Functional Tests', function() {
           assert.equal(res.status, 200);
           assert.isArray(res.body.replies);
           assert.exists(res.body._id);
-          assert
+          //assert.exists(res.body.created_on);
+          //assert.exists(res.body.bumped_on);
+          assert.exists(res.body.delete_password);
           done();
         })
       })
