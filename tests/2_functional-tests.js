@@ -106,6 +106,9 @@ suite('Functional Tests', function() {
         .query({thread_id: 'testid'})
         .end((err, res) =>{
           assert.equal(res.status, 200);
+          assert.isArray(res.body.replies);
+          assert.exists(res.body._id);
+          assert
           done();
         })
       })
