@@ -13,9 +13,13 @@ function ReplyHandler () {
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      collection.findOne({_id: thread_id}, {reported: 0, delete_password: 0}, (err, ret)=> {
+      collection.findOne({_id: thread_id}, {projection: {reported: 0, delete_password: 0}}, (err, ret)=> {
         if(err) console.log(err);
-        res.json(ret)
+        ret.replies.forEach(reply=>{
+          if (reply.reported) delete reply.reported;
+          if(reply.delete_password) delete reply.delete_password;
+        })
+        console.log(ret)
       })
     });
   };
