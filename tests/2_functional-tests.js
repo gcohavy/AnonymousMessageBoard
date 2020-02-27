@@ -92,9 +92,10 @@ suite('Functional Tests', function() {
     });
     
     suite('GET', function() {
-      test('Get single thread and replies', function(done){
+      test('Get a single thread and replies', function(done){
         chai.request(server)
         .get('/api/replies/test')
+        .query({thread_id: 'something'})
         .end((err, res) =>{
           assert.equal(res.status, 200);
           done();
