@@ -46,7 +46,7 @@ function ThreadHandler() {
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      
+      collection.deleteMany()
     });
   };
   

@@ -8,7 +8,6 @@ function ReplyHandler () {
   this.getReplies = function (req, res) {
     var board = req.params.board;
     var thread_id = req.query.thread_id;
-    console.log(thread_id);
     mongoClient.connect(db_connection_string, {useUnifiedTopology: true}, (err, client)=>{
       if(err) console.log(err);
       var db = client.db('test');
@@ -16,10 +15,10 @@ function ReplyHandler () {
       collection.findOne({_id: thread_id}, {projection: {reported: 0, delete_password: 0}}, (err, ret)=> {
         if(err) console.log(err);
         ret.replies.forEach(reply=>{
-          if (reply.reported) delete reply.reported;
+          if (reply.reported || reply.reported == false) delete reply.reported;
           if(reply.delete_password) delete reply.delete_password;
         })
-        console.log(ret)
+        res.json(ret)
       })
     });
   };
