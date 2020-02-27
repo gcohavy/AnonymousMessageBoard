@@ -22,7 +22,7 @@ suite('Functional Tests', function() {
     suite('POST', function() {
       test('Post to a new board', function(done) {
         chai.request(server)
-        .post('/api/threads/test')
+        .post('/api/threads/testcollection')
         .send({
           text: 'Test text',
           delete_password: 'password'
@@ -38,9 +38,10 @@ suite('Functional Tests', function() {
     suite('GET', function() {
       test('Get last 10 bumped threads', function(done){
         chai.request(server)
-        .get('/api/threads/test')
+        .get('/api/threads/testcollection')
         .end((err, res) =>{
           assert.equal(res.status, 200);
+          assert.Array(res.body);
           done();
         })
       })
@@ -49,9 +50,10 @@ suite('Functional Tests', function() {
     suite('DELETE', function() {
       test('Delete thread', function(done){
         chai.request(server)
-        .delete('/api/threads/test')
+        .delete('/api/threads/testcollection')
         .end((err, res) =>{
           assert.equal(res.status, 200);
+          assert.equal(res.text, 'Successfully deleted')
           done();
         })
       })
@@ -61,7 +63,7 @@ suite('Functional Tests', function() {
     suite('PUT', function() {
       test('Update thread', function(done){
         chai.request(server)
-        .put('/api/threads/test')
+        .put('/api/threads/testcollection')
         .end((err, res) =>{
           assert.equal(res.status, 200);
           done();
@@ -78,7 +80,7 @@ suite('Functional Tests', function() {
     suite('POST', function() {
       test('Post a new reply', function(done) {
         chai.request(server)
-        .post('/api/replies/test')
+        .post('/api/replies/testcollection')
         .send({
           text: 'Test text',
           delete_password: 'password',
@@ -94,7 +96,7 @@ suite('Functional Tests', function() {
     suite('GET', function() {
       test('Get a single thread and replies', function(done){
         chai.request(server)
-        .get('/api/replies/test')
+        .get('/api/replies/testcollection')
         .query({thread_id: 'something'})
         .end((err, res) =>{
           assert.equal(res.status, 200);
@@ -107,7 +109,7 @@ suite('Functional Tests', function() {
     suite('PUT', function() {
       test('Update reply', function(done){
         chai.request(server)
-        .put('/api/replies/test')
+        .put('/api/replies/testcollection')
         .end((err, res) =>{
           assert.equal(res.status, 200);
           done();
@@ -119,7 +121,7 @@ suite('Functional Tests', function() {
     suite('DELETE', function() {
       test('Delete reply', function(done){
         chai.request(server)
-        .delete('/api/replies/test')
+        .delete('/api/replies/testcollection')
         .end((err, res) =>{
           assert.equal(res.status, 200);
           done();
