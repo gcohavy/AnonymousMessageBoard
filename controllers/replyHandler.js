@@ -52,7 +52,10 @@ function ReplyHandler () {
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      collection.findOneAndUpdate({_id: thread_id}, {$set: {}})
+      collection.findOneAndUpdate({_id: thread_id, "replies.$._id": reply_id}, {$set: {reported: true}}, {returnOriginal: false}, (err, ret) => {
+        if(err) console.log(err);
+        console.log(ret.value);
+      })
     });
   };
   
