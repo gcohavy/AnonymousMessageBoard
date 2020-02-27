@@ -47,10 +47,26 @@ suite('Functional Tests', function() {
     });
     
     suite('DELETE', function() {
+      test('Delete thread', function(done){
+        chai.request(server)
+        .delete('/api/threads/test')
+        .end((err, res) =>{
+          assert.equal(res.status, 200);
+          done();
+        })
+      })
       
     });
     
     suite('PUT', function() {
+      test('Update thread', function(done){
+        chai.request(server)
+        .put('/api/threads/test')
+        .end((err, res) =>{
+          assert.equal(res.status, 200);
+          done();
+        })
+      })
       
     });
     
@@ -76,14 +92,38 @@ suite('Functional Tests', function() {
     });
     
     suite('GET', function() {
+      test('Get single thread and replies', function(done){
+        chai.request(server)
+        .get('/api/replies/test')
+        .end((err, res) =>{
+          assert.equal(res.status, 200);
+          done();
+        })
+      })
       
     });
     
     suite('PUT', function() {
+      test('Update reply', function(done){
+        chai.request(server)
+        .put('/api/replies/test')
+        .end((err, res) =>{
+          assert.equal(res.status, 200);
+          done();
+        })
+      })
       
     });
     
     suite('DELETE', function() {
+      test('Delete reply', function(done){
+        chai.request(server)
+        .delete('/api/replies/test')
+        .end((err, res) =>{
+          assert.equal(res.status, 200);
+          done();
+        })
+      })
       
     });
     
