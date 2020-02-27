@@ -26,7 +26,10 @@ module.exports = function (app) {
     if(err) console.log(err);
     var db = client.db('test');
     var collection = db.collection('testcollection');
-    collection.findOneAndDelete({_id: 'testid'});
+    collection.deleteOne({_id: 'testid'}, (err, ret) => {
+      if(err) console.log('err deleting test thread duplicate: ' + err);
+      console.log('duplicate thread deleted');
+    });
     collection.insertOne({
       _id: 'testid',
       created_on: new Date(),
@@ -35,6 +38,9 @@ module.exports = function (app) {
       reported: false,
       delete_password: 'req.body.delete_password',
       replies: ['1', '2', '3', '4', '5']
+    }, (err, ret) => {
+      if(err) console.log('err inserting test thread: ' + err);
+      console.log('Test thread inserted');
     })
   })
   

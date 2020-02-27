@@ -7,7 +7,7 @@ function ReplyHandler () {
   
   this.getReplies = function (req, res) {
     var board = req.params.board;
-    var thread_id = req.query.thread_id;
+    var thread_id = req.query.thread_id);
     mongoClient.connect(db_connection_string, {useUnifiedTopology: true}, (err, client)=>{
       if(err) console.log(err);
       var db = client.db('test');

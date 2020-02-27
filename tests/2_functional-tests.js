@@ -41,7 +41,7 @@ suite('Functional Tests', function() {
         .get('/api/threads/testcollection')
         .end((err, res) =>{
           assert.equal(res.status, 200);
-          assert.Array(res.body);
+          assert.isArray(res.body);
           done();
         })
       })
@@ -84,7 +84,7 @@ suite('Functional Tests', function() {
         .send({
           text: 'Test text',
           delete_password: 'password',
-          thread_id: 'something'
+          thread_id: 'testid'
         })
         .end((err, res) => {          
           assert.equal(res.status, 200);
@@ -97,7 +97,7 @@ suite('Functional Tests', function() {
       test('Get a single thread and replies', function(done){
         chai.request(server)
         .get('/api/replies/testcollection')
-        .query({thread_id: 'something'})
+        .query({thread_id: 'testid'})
         .end((err, res) =>{
           assert.equal(res.status, 200);
           done();
