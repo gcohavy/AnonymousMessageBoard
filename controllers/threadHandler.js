@@ -9,9 +9,13 @@ function ThreadHandler() {
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      var arr = collection.find({projection: {}}).sort({bumped_on: -1}).toArray();
-      Promise.resolve(arr).then(result => {console.log(result.slice(0,10))})
-      console.log(new Date())
+      var arr = collection.find({},{projection: {reported:0, delete_password:0}}).sort({bumped_on: -1}).toArray();
+      Promise.resolve(arr).then(result => {
+        for(let i=0; i<10; i++) {
+          result.replies.splice(3);
+        }
+        res.json(result.slice(0,10));
+      })
     });
   };
   
