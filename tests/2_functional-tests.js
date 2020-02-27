@@ -133,7 +133,7 @@ suite('Functional Tests', function() {
         })
         .end((err, res) =>{
           assert.equal(res.status, 200);
-          assert.equal(res.text, 'Delete Successful');
+          assert.equal(res.text, 'Delete successful');
           done();
         })
       })

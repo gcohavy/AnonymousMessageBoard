@@ -59,12 +59,20 @@ function ReplyHandler () {
     var thread_id = req.body.thread_id;
     var delete_password = req.body.delete_password;
     var reply_id = req.body.reply_id;
+    var sucdel;
     mongoClient.connect(db_connection_string, {useUnifiedTopology: true}, (err, client)=>{
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
       collection.findOne({_id: thread_id}, (err, ret) => {
-        
+        if(err) console.log(err);
+        ret.replies.forEach(reply => {
+          if( reply.delete_password == delete_password ) {
+            reply.text = '[deleted]';
+            console.log(reply);
+            return res.send('Delete successful');
+          }
+        })
       });
     });
   };
