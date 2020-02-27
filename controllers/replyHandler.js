@@ -15,7 +15,7 @@ function ReplyHandler () {
       var collection = db.collection(board);
       collection.findOne({_id: thread_id}, {reported: 0, delete_password: 0}, (err, ret)=> {
         if(err) console.log(err);
-        console.log(ret)
+        res.json(ret)
       })
     });
   };
