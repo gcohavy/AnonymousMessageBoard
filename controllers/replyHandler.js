@@ -56,6 +56,9 @@ function ReplyHandler () {
   
   this.deleteReply = function (req, res) {
     var board = req.params.board;
+    var thread_id = req.body.thread_id;
+    var delete_password = req.body.delete_password;
+    var reply_id = req.body.reply_id;
     mongoClient.connect(db_connection_string, {useUnifiedTopology: true}, (err, client)=>{
       if(err) console.log(err);
       var db = client.db('test');
