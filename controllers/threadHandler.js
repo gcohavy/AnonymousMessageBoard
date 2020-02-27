@@ -70,9 +70,9 @@ function ThreadHandler() {
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      collection.findOneAndUpdate({_id: thread_id}, {$set: {reported: true}}, {returnNewDocument: true}, (err, ret) => {
+      collection.findOneAndUpdate({_id: thread_id}, {$set: {reported: true}}, {returnOriginal: false}, (err, ret) => {
         if(err) console.log(err);
-        console.log(ret);
+        res.send('success');
       })
     });
   }

@@ -71,6 +71,7 @@ suite('Functional Tests', function() {
         .send({thread_id: 'testid'})
         .end((err, res) =>{
           assert.equal(res.status, 200);
+          assert.equal(res.text, 'success');
           done();
         })
       })
@@ -115,8 +116,13 @@ suite('Functional Tests', function() {
       test('Update reply', function(done){
         chai.request(server)
         .put('/api/replies/testcollection')
+        .send({
+          thread_id: 'testid',
+          reply_id: 'testid'
+        })
         .end((err, res) =>{
           assert.equal(res.status, 200);
+          assert.equal(res.text, 'success');
           done();
         })
       })

@@ -46,11 +46,13 @@ function ReplyHandler () {
   
   this.updateReply = function (req, res) {
     var board = req.params.board;
+    var thread_id = req.body.thread_id;
+    var reply_id = req.body.reply_id;
     mongoClient.connect(db_connection_string, {useUnifiedTopology: true}, (err, client)=>{
       if(err) console.log(err);
       var db = client.db('test');
       var collection = db.collection(board);
-      
+      collection.findOneAndUpdate({_id: thread_id}, {$set: {}})
     });
   };
   
